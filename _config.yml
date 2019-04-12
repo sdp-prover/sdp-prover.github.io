@@ -1,6 +1,7 @@
 # theme: jekyll-theme-modernist
 theme: jekyll-theme-minima
 title: SDP - A Separation Logic Disprover
-description: SDP - A Separation Logic Disprover
+description:
+  SDP is a theorem prover which can be used for disproving invalid entailments.
 github:
   is_project_page: false
