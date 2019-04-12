@@ -1,0 +1,5 @@
+theme: jekyll-theme-modernist
+title: SDP - A Separation Logic Disprover
+description: SDP - A Separation Logic Disprover
+github:
+  is_project_page: false
