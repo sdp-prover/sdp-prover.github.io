@@ -34,7 +34,7 @@ programmers to understand and to fix the bug more effectively.
 We first experimented SDP with the task of disproving invalid
 entailments collected from the separation logic competition
 SL-COMP 2019. SDP can disprove all of these entailments with the average
-proving time is 0.36s per entailment. It outperformed all other
+proving time of 0.36s per entailment. It outperformed all
 state-of-the-art separation logic provers, which can prove at most
 71.4\% (137/192) of the benchmarks. The detailed results is presented in
 the below table, where the notation *\** indicates categories containing
@@ -62,9 +62,9 @@ entailments that an existing verifier Hip/Sleek could not prove (it
 returns the answer *unknown*). Then, we manually inspect to select only
 invalid entailments. These entailments contain not only arithmetic
 constraints but also complicated data structures. Hence, most of them
-cannot be handled by existing separation logic provers. In contrast, our
-prover SDP can efficiently disprove all of them in averagely 0.08
-seconds per entailments. The detailed experiment of our prover SDP is
+cannot be disproved by existing separation logic provers. In contrast,
+our prover SDP can efficiently disprove all of them in averagely 0.08
+seconds per entailment. The detailed experiment of our prover SDP is
 shown in the below table.
 
 
