@@ -4,31 +4,30 @@ layout: default
 
 # Introduction
 
-*SDP* is a theorem disprover for separation logic entailments. In
-essence, it can disprove an entailment F |- G by proving that the
-corresponding non-entailment F |/- G is satisfable, i.e., there exists a
-witness-model for this non-entailment. *SDP* is equipped with a proof
-system for non-entailment, which contains various inference rules
-reasoning with the existence of the witness-model.
+*SDP* is a theorem disprover for separation logic entailments. It can
+disprove an entailment F |- G by proving that the corresponding
+non-entailment F |/- G is satisfable, i.e., there exists a witness-model
+for this non-entailment. For this purpose, *SDP* is equipped with a
+proof system for non-entailment, which contains various inference rules
+designed to prove the existence of the witness-model.
 
 # Why needs to disprove entailments?
 
 During the verification of a program, a verifier often needs to handle
-verification conditions which appear in the form of entailments.
-However, proving separation logic entailments is known to be undecidable
-and most of the existing techniques mainly focus on proving that an
-entailment is *valid*. Such proof is needed to confirm that a program
-satisfies its specification.
+verification conditions appearing in the form of entailments. However,
+proving separation logic entailments is known to be undecidable and most
+of the existing techniques mainly focus on proving valid entailment.
+Such proof is needed to confirm that a program satisfies its
+specification.
 
 However, these techniques often return an answer *unknown* when they
 cannot prove an entailment. In this case, it is desired to examine
 further if this *unknown* answer means the entailment is *invalid*. This
-is important for the verifier to conclude whether the corresponding
-program violates its specifications, i.e., there is a bug in the
-implementation of the program. Also, when an entailment can be concluded
-invalid, its counter-model can be used to generate failed test cases.
-These test cases enable programmers to understand and to fix the bugs in
-the program more effectively.
+is important for the verifier to conclude whether a program violates its
+specifications, i.e., there is a bug in the implementation of the
+program. Also, when an entailment can be concluded invalid, its
+counter-model can be used to generate failed test cases, which enable
+programmers to understand and to fix the bug more effectively.
 
 # How good SDP is?
 
