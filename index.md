@@ -4,12 +4,12 @@ layout: default
 
 # Introduction
 
-*SDP* is an theorem disprover for separation logic entailments. At its
-core, *SDP* is equipped with a proof system for non-entailment, which is
-denoted as F |/- G. To prove a non-entailment, our proof system will
-apply various inference rules to look for the existence of its
-witness-model. If the non-entailment F |/- G can be proved, then *SDP*
-can conclude that the entailment F |- G is invalid.
+*SDP* is a theorem disprover for separation logic entailments. In
+essence, it can disprove an entailment F |- G by proving that the
+corresponding non-entailment F |/- G is satisfable, i.e., there exists a
+witness-model for this non-entailment. *SDP* is equipped with a proof
+system for non-entailment, which contains various inference rules
+reasoning with the existence of the witness-model.
 
 # Why needs to disprove entailments?
 
@@ -34,11 +34,12 @@ the program more effectively.
 
 We first experimented SDP with the task of disproving invalid
 entailments collected from the separation logic competition
-SL-COMP 2019. SDP can disprove all of these entailments (the average
-proving time is 0.36s per entailment). It outperformed all other
+SL-COMP 2019. SDP can disprove all of these entailments with the average
+proving time is 0.36s per entailment. It outperformed all other
 state-of-the-art separation logic provers, which can prove at most
-71.4\% (137/192) of the benchmarks. The detailed results are as follows,
-where *\** indicates categories containing arithmetic constraints.
+71.4\% (137/192) of the benchmarks. The detailed results is presented in
+the below table, where the notation *\** indicates categories containing
+arithmetic constraints.
 
 |---------------------|-------|-------|---------|---------|---------|-----|
 | Category            | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP |
@@ -56,18 +57,16 @@ where *\** indicates categories containing arithmetic constraints.
 |---------------------|-------|-------|---------|---------|---------|-----|
 
 
-We also experimented SDP with invalid entailments collected by the
-verification system Hip/Sleek when it verifies buggy programs. In
-particular, we collect the entailments that this tool cannot prove,
-i.e., it returns the answer *unknown*. Then we manually inspect them to
-select only invalid entailments. These entailments contain not only
-arithmetic constraints but also complicated data structures. Hence, most
-of them cannot be handled by existing separation logic provers. In
-contrast, our prover SDP can efficiently disprove all of them in
-averagely 0.08 seconds per entailments. This result shows that our
-prover SDP can be practically applied to improve the performance of
-existing verification systems. The detailed experiment is shown in the
-below table.
+We also experimented SDP with invalid entailments collected from the
+verification of buggy programs. In particular, we collect the
+entailments that an existing verifier Hip/Sleek could not prove (it
+returns the answer *unknown*). Then, we manually inspect to select only
+invalid entailments. These entailments contain not only arithmetic
+constraints but also complicated data structures. Hence, most of them
+cannot be handled by existing separation logic provers. In contrast, our
+prover SDP can efficiently disprove all of them in averagely 0.08
+seconds per entailments. The detailed experiment of our prover SDP is
+shown in the below table.
 
 
 |--------------------|---------------------------------------|--------|-------|-------|-----|------|
