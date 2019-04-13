@@ -37,23 +37,22 @@ SL-COMP 2019. SDP can disprove all of these entailments with the average
 proving time of 0.36s per entailment. It outperformed all
 state-of-the-art separation logic provers, which can prove at most
 71.4\% (137/192) of the benchmarks. The detailed results is presented in
-the below table, where the notation *\** indicates categories containing
-arithmetic constraints.
+the below table.
 
-|---------------------|-------|-------|---------|---------|---------|-----|
-| Category            | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP |
-|---------------------|-------|-------|---------|---------|---------|-----|
-| singly linked-list  |   134 | 0     | 126     |     126 |      24 | 134 |
-| nested linked-list  |    16 | x     | x       |       x |       0 |  16 |
-| skip list           |    12 | x     | x       |       x |       0 |  12 |
-| doubly linked-list  |    18 | 0     | x       |       0 |      14 |  18 |
-| tree                |     1 | 0     | x       |       x |       1 |   1 |
-|---------------------|-------|-------|---------|---------|---------|-----|
-| singly linked-list* |     3 | x     | x       |       3 |       x |   3 |
-| doubly linked-list* |     8 | x     | x       |       8 |       x |   8 |
-|---------------------|-------|-------|---------|---------|---------|-----|
-| Total               |   192 | 0     | 126     |     137 |      39 | 192 |
-|---------------------|-------|-------|---------|---------|---------|-----|
+|--------------------------------------|-------|-------|---------|---------|---------|-----|
+| Category                             | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP |
+|--------------------------------------|-------|-------|---------|---------|---------|-----|
+| singly linked-list                   |   134 | 0     | 126     |     126 |      24 | 134 |
+| nested linked-list                   |    16 | x     | x       |       x |       0 |  16 |
+| skip list                            |    12 | x     | x       |       x |       0 |  12 |
+| doubly linked-list                   |    18 | 0     | x       |       0 |      14 |  18 |
+| tree                                 |     1 | 0     | x       |       x |       1 |   1 |
+|--------------------------------------|-------|-------|---------|---------|---------|-----|
+| singly linked-list (with arithmetic) |     3 | x     | x       |       3 |       x |   3 |
+| doubly linked-list (with arithmetic) |     8 | x     | x       |       8 |       x |   8 |
+|--------------------------------------|-------|-------|---------|---------|---------|-----|
+| Total                                |   192 | 0     | 126     |     137 |      39 | 192 |
+|--------------------------------------|-------|-------|---------|---------|---------|-----|
 
 
 We also experimented SDP with invalid entailments collected from the
