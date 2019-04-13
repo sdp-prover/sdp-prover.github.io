@@ -6,10 +6,10 @@ layout: default
 
 *SDP* is an theorem disprover for separation logic entailments. At its
 core, *SDP* is equipped with a proof system for non-entailment, which is
-denoted as $F \nvdash G$. To prove a non-entailment, our proof system
-will apply various inference rules to look for the existence of its
-witness-model. If the non-entailment $F \nvdash G$ can be proved, then
-*SDP* can conclude that the entailment $F \vdash G$ is invalid.
+denoted as F |/- G. To prove a non-entailment, our proof system will
+apply various inference rules to look for the existence of its
+witness-model. If the non-entailment F |/- G can be proved, then *SDP*
+can conclude that the entailment F |- G is invalid.
 
 # Why needs to disprove entailments?
 
@@ -33,12 +33,12 @@ the program more effectively.
 # How good SDP is?
 
 We first experimented SDP with the task of disproving invalid
-entailments collected from the separation logic competition SLCOMP 2019.
-SDP can disprove all of these entailments (the average proving time is
-0.36s per entailment). It outperformed all other state-of-the-art
-separation logic provers, which can prove at most 71.4\% (137/192) of
-the benchmarks. The detailed results are as follows, where *\**
-indicates categories containing arithmetic constraints.
+entailments collected from the separation logic competition
+SL-COMP 2019. SDP can disprove all of these entailments (the average
+proving time is 0.36s per entailment). It outperformed all other
+state-of-the-art separation logic provers, which can prove at most
+71.4\% (137/192) of the benchmarks. The detailed results are as follows,
+where *\** indicates categories containing arithmetic constraints.
 
 |---------------------|-------|-------|---------|---------|---------|-----|
 | Category            | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP |
@@ -84,3 +84,9 @@ below table.
 |--------------------|---------------------------------------|--------|-------|-------|-----|------|
 
 # Download
+
+- Our prover SDB and the experimented entaiments benchmarks can be
+  downloaded here: [SDB and its benchmarks](https://www.dropbox.com/s/l8wkbkjwum4mix9/prover-benchmarks.zip)
+
+- The details of our experiment are reported in this PDF file:
+  [experiment details](https://www.dropbox.com/s/i2n1jgswu6o9h3f/FM19-experiment.pdf)
