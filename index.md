@@ -83,8 +83,9 @@ shown in the below table.
 
 # Download
 
-- Our prover SDB and the experimented entaiments benchmarks can be
-  downloaded here: [SDB and its benchmarks](https://www.dropbox.com/s/l8wkbkjwum4mix9/prover-benchmarks.zip)
+- Our prover SDB and the experimented entaiment benchmarks can be
+  downloaded here: [SDB and its
+  benchmarks](https://www.dropbox.com/s/l8wkbkjwum4mix9/prover-benchmarks.zip)
 
 - The details of our experiment are reported in this PDF file:
   [experiment details](https://www.dropbox.com/s/i2n1jgswu6o9h3f/FM19-experiment.pdf)
