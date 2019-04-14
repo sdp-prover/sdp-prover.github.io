@@ -11,7 +11,7 @@ for this non-entailment. For this purpose, *SDP* is equipped with a
 proof system for non-entailment, which contains various inference rules
 designed to prove the existence of the witness-model.
 
-# Why needs to disprove entailments?
+# Why need to disprove entailments?
 
 During the verification of a program, a verifier often needs to handle
 verification conditions appearing in the form of entailments. However,
@@ -39,20 +39,20 @@ state-of-the-art separation logic provers, which can prove at most
 71.4\% (137/192) of the benchmarks. The detailed results is presented in
 the below table.
 
-|--------------------------------------|-------|-------|---------|---------|---------|-----|
-| Category                             | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP |
-|--------------------------------------|-------|-------|---------|---------|---------|-----|
-| singly linked-list                   |   134 | 0     | 126     |     126 |      24 | 134 |
-| nested linked-list                   |    16 | x     | x       |       x |       0 |  16 |
-| skip list                            |    12 | x     | x       |       x |       0 |  12 |
-| doubly linked-list                   |    18 | 0     | x       |       0 |      14 |  18 |
-| tree                                 |     1 | 0     | x       |       x |       1 |   1 |
-|--------------------------------------|-------|-------|---------|---------|---------|-----|
-| singly linked-list (arithmetic) |     3 | x     | x       |       3 |       x |   3 |
-| doubly linked-list (arithmetic)  |     8 | x     | x       |       8 |       x |   8 |
-|--------------------------------------|-------|-------|---------|---------|---------|-----|
-| Total                                |   192 | 0     | 126     |     137 |      39 | 192 |
-|--------------------------------------|-------|-------|---------|---------|---------|-----|
+|---------------------------------|-------|-------|---------|---------|---------|---------|
+| Category                        | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP     |
+|---------------------------------|-------|-------|---------|---------|---------|---------|
+| singly linked-list              |   134 | 0     | 126     |     126 |      24 | **134** |
+| nested linked-list              |    16 | x     | x       |       x |       0 | **16**  |
+| skip list                       |    12 | x     | x       |       x |       0 | **12**  |
+| doubly linked-list              |    18 | 0     | x       |       0 |      14 | **18**  |
+| tree                            |     1 | 0     | x       |       x |       1 | **1**   |
+|---------------------------------|-------|-------|---------|---------|---------|---------|
+| singly linked-list (arithmetic) |     3 | x     | x       |       3 |       x | **3**   |
+| doubly linked-list (arithmetic) |     8 | x     | x       |       8 |       x | **8**   |
+|---------------------------------|-------|-------|---------|---------|---------|---------|
+| Total                           |   192 | 0     | 126     |     137 |      39 | **192** |
+|---------------------------------|-------|-------|---------|---------|---------|---------|
 
 
 We also experimented SDP with invalid entailments collected from the
@@ -67,18 +67,18 @@ seconds per entailment. The detailed experiment of our prover SDP is
 shown in the below table.
 
 
-|--------------------|---------------------------------------|--------|-------|-------|-----|------|
-| Data Structures    | Algorithms                            | #Procs | #Bugs | #Ents | SDB | Time |
-|--------------------|---------------------------------------|--------|-------|-------|-----|------|
-| singly linked-list | length, insert, append, reverse, copy |     13 |    17 |    17 |  17 | 0.07 |
-| doubly linked-list | length, insert, append, reverse, copy |     15 |    19 |    23 |  23 | 0.05 |
-| sorted linked-list | insertion, merge, quicksort, bubble   |     12 |    13 |    26 |  26 | 0.03 |
-| tree               | size, height, flatten                 |      7 |     9 |    10 |  10 | 0.22 |
-| binary search tree | size, height, flatten, insert, delete |     13 |    15 |    21 |  21 | 0.05 |
-| avl tree           | size, height, flatten, merge          |     10 |    12 |    16 |  16 | 0.14 |
-|--------------------|---------------------------------------|--------|-------|-------|-----|------|
-| Total              | 26                                    |     70 |    85 |   113 | 113 | 0.08 |
-|--------------------|---------------------------------------|--------|-------|-------|-----|------|
+|--------------------|---------------------------------------|--------|-------|-------|---------------|------|
+| Data Structures    | Algorithms                            | #Procs | #Bugs | #Ents | Proved by SDB | Time |
+|--------------------|---------------------------------------|--------|-------|-------|---------------|------|
+| singly linked-list | length, insert, append, reverse, copy |     13 |    17 |    17 | **17**        | 0.07 |
+| doubly linked-list | length, insert, append, reverse, copy |     15 |    19 |    23 | **23**        | 0.05 |
+| sorted linked-list | insertion, merge, quicksort, bubble   |     12 |    13 |    26 | **26**        | 0.03 |
+| tree               | size, height, flatten                 |      7 |     9 |    10 | **10**        | 0.22 |
+| binary search tree | size, height, flatten, insert, delete |     13 |    15 |    21 | **21**        | 0.05 |
+| avl tree           | size, height, flatten, merge          |     10 |    12 |    16 | **16**        | 0.14 |
+|--------------------|---------------------------------------|--------|-------|-------|---------------|------|
+| Total              | 26                                    |     70 |    85 |   113 | **113**       | 0.08 |
+|--------------------|---------------------------------------|--------|-------|-------|---------------|------|
 
 # Download
 
