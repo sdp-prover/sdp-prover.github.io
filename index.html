@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="The SDP Prover" />
 <script type="application/ld+json">
-{"@type":"WebSite","url":"http://localhost:4000/","name":"The SDP Prover","headline":"The SDP Prover","description":"A Prover for Disproving Separation Logic Entailments","@context":"https://schema.org"}</script>
+{"@type":"WebSite","url":"http://localhost:4000/","headline":"The SDP Prover","name":"The SDP Prover","description":"A Prover for Disproving Separation Logic Entailments","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -42,12 +42,12 @@
       <section id="main_content" class="inner">
         <h1 id="introduction">Introduction</h1>
 
-<p><em>SDP</em> is a theorem disprover for separation logic entailments. It can
-disprove an entailment F |- G by proving that the corresponding
-non-entailment F |/- G is satisfable, i.e., there exists a witness-model
-for this non-entailment. For this purpose, <em>SDP</em> is equipped with a
-proof system for non-entailment, which contains various inference rules
-designed to prove the existence of the witness-model.</p>
+<p><strong>SDP</strong> is a theorem disprover for separation logic entailments. It can
+disprove an entailment F |- G by proving that the non-entailment F |/- G
+is satisfable (that is, there exists a witness-model). For this purpose,
+at its core, <strong>SDP</strong> is equipped with a proof system which contains
+various inference rules designed to prove the existence of the
+witness-model of non-entailments.</p>
 
 <h1 id="why-need-to-disprove-entailments">Why need to disprove entailments?</h1>
 
@@ -69,10 +69,10 @@ programmers to understand and to fix the bug more effectively.</p>
 
 <h1 id="how-good-sdp-is">How good SDP is?</h1>
 
-<p>We first experimented SDP with the task of disproving invalid
+<p>We first experimented <strong>SDP</strong> with the task of disproving invalid
 entailments collected from the separation logic competition
-SL-COMP 2019. SDP can disprove all of these entailments with the average
-proving time of 0.36s per entailment. It outperformed all
+SL-COMP 2019. <strong>SDP</strong> can disprove all of these entailments with the
+average proving time of 0.36s per entailment. It outperformed all
 state-of-the-art separation logic provers, which can prove at most
 71.4\% (137/192) of the benchmarks. The detailed results is presented in
 the below table.</p>
@@ -158,7 +158,7 @@ the below table.</p>
   </tbody>
   <tbody>
     <tr>
-      <td>Total</td>
+      <td><strong>Total</strong></td>
       <td>192</td>
       <td>0</td>
       <td>126</td>
@@ -169,16 +169,16 @@ the below table.</p>
   </tbody>
 </table>
 
-<p>We also experimented SDP with invalid entailments collected from the
-verification of buggy programs. In particular, we collect the
-entailments that an existing verifier Hip/Sleek could not prove (it
-returns the answer <em>unknown</em>). Then, we manually inspect to select only
-invalid entailments. These entailments contain not only arithmetic
-constraints but also complicated data structures. Hence, most of them
-cannot be disproved by existing separation logic provers. In contrast,
-our prover SDP can efficiently disprove all of them in averagely 0.08
-seconds per entailment. The detailed experiment of our prover SDP is
-shown in the below table.</p>
+<p>We also experimented <strong>SDP</strong> with invalid entailments collected from the
+verification of buggy programs written in a C-like language. In
+particular, we first collected entailments that an existing verifier
+Hip/Sleek could not prove (it returns the answer <em>unknown</em>). Then, we
+manually inspected to select only invalid entailments. These entailments
+contain not only arithmetic constraints but also complicated data
+structures. Hence, most of them cannot be disproved by existing
+separation logic provers. In contrast, our prover <strong>SDP</strong> efficiently
+disproved all of them in averagely 0.08 seconds per entailment. The
+details of this experiment as below.</p>
 
 <table>
   <thead>
@@ -250,8 +250,8 @@ shown in the below table.</p>
   </tbody>
   <tbody>
     <tr>
-      <td>Total</td>
-      <td>26</td>
+      <td><strong>Total</strong></td>
+      <td>36</td>
       <td>70</td>
       <td>85</td>
       <td>113</td>
