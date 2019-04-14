@@ -35,9 +35,8 @@ We first experimented **SDP** with the task of disproving invalid
 entailments collected from the separation logic competition
 SL-COMP 2019. **SDP** can disprove all of these entailments with the
 average proving time of 0.36s per entailment. It outperformed all
-state-of-the-art separation logic provers, which can prove at most
-71.4\% (137/192) of the benchmarks. The detailed results is presented in
-the below table.
+state-of-the-art separation logic provers, which can prove at most 71.4%
+(137/192) of the benchmarks. The detailed results is presented below.
 
 |---------------------------------|-------|-------|---------|---------|---------|---------|
 | Category                        | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP     |
@@ -82,7 +81,7 @@ details of this experiment as below.
 
 # Download
 
-- Our prover SDB and the experimented entaiment benchmarks can be
+- Our prover SDP and the experimented entaiment benchmarks can be
   downloaded here: [SDB and its
   benchmarks](https://www.dropbox.com/s/bzsh70pm6n50oaf/prover-benchmarks.zip)
 
