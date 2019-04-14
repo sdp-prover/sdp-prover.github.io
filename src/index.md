@@ -68,7 +68,7 @@ shown in the below table.
 
 
 |--------------------|---------------------------------------|--------|-------|-------|---------------|----------------|
-| Data Structures    | Algorithms                            | #Procs | #Bugs | #Ents | Proved by SDB | Time (seconds) |
+| Data Structures    | Algorithms                            | #Procs | #Bugs | #Ents | Proved by SDB | Time (s) |
 |--------------------|---------------------------------------|--------|-------|-------|---------------|----------------|
 | singly linked-list | length, insert, append, reverse, copy |     13 |    17 |    17 | **17**        |           0.07 |
 | doubly linked-list | length, insert, append, reverse, copy |     15 |    19 |    23 | **23**        |           0.05 |

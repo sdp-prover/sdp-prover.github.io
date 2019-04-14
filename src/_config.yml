@@ -1,5 +1,5 @@
 title: The SDP Prover
-description: SPD - A Separation Logic Entailment Disprover
+description: A Prover for Disproving Separation Logic Entailments
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-slate
