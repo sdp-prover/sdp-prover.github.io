@@ -71,10 +71,11 @@ programmers to understand and to fix the bug more effectively.</p>
 
 <p>We first experimented <strong>SDP</strong> with the task of disproving invalid
 entailments collected from the separation logic competition
-SL-COMP 2019. <strong>SDP</strong> can disprove all of these entailments with the
-average proving time of 0.36s per entailment. It outperformed all
-state-of-the-art separation logic provers, which can prove at most 71.4%
-(137/192) of the benchmarks. The detailed results is presented below.</p>
+SL-COMP 2019. <strong>SDP</strong> can disprove 94.8% (182/192) of these entailments
+with the average proving time of 1.38s per entailment. It outperformed
+all state-of-the-art separation logic provers, which can prove at most
+71.4% (137/192) of the benchmarks. The detailed results is presented
+below.</p>
 
 <table>
   <thead>
@@ -96,7 +97,7 @@ state-of-the-art separation logic provers, which can prove at most 71.4%
       <td>126</td>
       <td>126</td>
       <td>24</td>
-      <td><strong>134</strong></td>
+      <td><strong>126</strong></td>
     </tr>
     <tr>
       <td>nested linked-list</td>
@@ -114,7 +115,7 @@ state-of-the-art separation logic provers, which can prove at most 71.4%
       <td>x</td>
       <td>x</td>
       <td>0</td>
-      <td><strong>12</strong></td>
+      <td><strong>10</strong></td>
     </tr>
     <tr>
       <td>doubly linked-list</td>
@@ -163,99 +164,210 @@ state-of-the-art separation logic provers, which can prove at most 71.4%
       <td>126</td>
       <td>137</td>
       <td>39</td>
-      <td><strong>192</strong></td>
+      <td><strong>182</strong></td>
     </tr>
   </tbody>
 </table>
 
-<p>We also experimented <strong>SDP</strong> with invalid entailments collected from the
-verification of buggy programs written in a C-like language. In
-particular, we first collected entailments that an existing verifier
-Hip/Sleek could not prove (it returns the answer <em>unknown</em>). Then, we
-manually inspected to select only invalid entailments. These entailments
-contain not only arithmetic constraints but also complicated data
-structures. Hence, most of them cannot be disproved by existing
-separation logic provers. In contrast, our prover <strong>SDP</strong> efficiently
-disproved all of them in averagely 0.08 seconds per entailment. The
-details of this experiment as below.</p>
+<p>We also aim to evaluate the practical use of our disprover <strong>SDP</strong> on
+disproving entailments generated from program verification. We first
+equip <strong>SDP</strong> with the proving feature from the base tool <strong>Songbird</strong>
+to create the enhanced prover <strong>SDP+</strong>. To examine a given entailment,
+<strong>SDP+</strong> will first attempt to prove it. If <strong>SDP+</strong> fails after a
+timeout (here, we set to 10s), then it will change to disprove the
+entailment. Then, we integrate the new prover <strong>SDP+</strong> as the backend of
+the verification system <strong>Hip</strong> and evaluate it on proving and
+disproving entailments collected from the verification of buggy
+programs written in a C-like language.</p>
+
+<p>In this experiment, the enhanced prover <strong>SDP+</strong> can prove 100% (93/93)
+of the valid entailments and 99.2\% (117/118) of the invalid
+entailments. This is because it inherits both the proving feature from
+<strong>Songbird</strong> and the disproving feature of <strong>SDP</strong>. Note that <strong>SDP+</strong>
+can efficiently prove all entailments in 0.23s per entailment. On the
+other hand, also the disproving runtime of <strong>SDP+</strong> is a bit slower than
+<strong>SDP</strong> (1.91s vs 0.16s per entailments), this overhead is still
+acceptable since the difference of 1.75s (1.91 - 0.16) is only 17.5\% of
+the timeout 10s which is set for the proving feature in <strong>SDP+</strong>.</p>
+
+<p>Experiment with valid entailments</p>
 
 <table>
   <thead>
     <tr>
       <th>Data Structures</th>
-      <th>Algorithms</th>
-      <th>#Procs</th>
-      <th>#Bugs</th>
-      <th>#Ents</th>
-      <th>Proved by SDB</th>
-      <th>Time (s)</th>
+      <th>#Ent</th>
+      <th>Songbird</th>
+      <th>SDB</th>
+      <th>SDB+</th>
+      <th>Songbird</th>
+      <th>SDB</th>
+      <th>SDB+</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>singly linked-list</td>
-      <td>length, insert, append, reverse, copy</td>
-      <td>13</td>
-      <td>17</td>
-      <td>17</td>
-      <td><strong>17</strong></td>
-      <td>0.07</td>
+      <td>11</td>
+      <td>11</td>
+      <td>-</td>
+      <td>11</td>
+      <td>0.16s</td>
+      <td>-</td>
+      <td>0.17s</td>
     </tr>
     <tr>
       <td>doubly linked-list</td>
-      <td>length, insert, append, reverse, copy</td>
       <td>15</td>
-      <td>19</td>
-      <td>23</td>
-      <td><strong>23</strong></td>
-      <td>0.05</td>
+      <td>15</td>
+      <td>-</td>
+      <td>15</td>
+      <td>0.17s</td>
+      <td>-</td>
+      <td>0.18s</td>
     </tr>
     <tr>
       <td>sorted linked-list</td>
-      <td>insertion, merge, quicksort, bubble</td>
-      <td>12</td>
-      <td>13</td>
-      <td>26</td>
-      <td><strong>26</strong></td>
-      <td>0.03</td>
+      <td>38</td>
+      <td>38</td>
+      <td>-</td>
+      <td>38</td>
+      <td>0.13s</td>
+      <td>-</td>
+      <td>0.13s</td>
     </tr>
     <tr>
       <td>tree</td>
-      <td>size, height, flatten</td>
-      <td>7</td>
       <td>9</td>
-      <td>10</td>
-      <td><strong>10</strong></td>
-      <td>0.22</td>
+      <td>9</td>
+      <td>-</td>
+      <td>9</td>
+      <td>0.88s</td>
+      <td>-</td>
+      <td>0.88s</td>
     </tr>
     <tr>
       <td>binary search tree</td>
-      <td>size, height, flatten, insert, delete</td>
-      <td>13</td>
-      <td>15</td>
-      <td>21</td>
-      <td><strong>21</strong></td>
-      <td>0.05</td>
+      <td>11</td>
+      <td>11</td>
+      <td>-</td>
+      <td>11</td>
+      <td>0.18s</td>
+      <td>-</td>
+      <td>0.18s</td>
     </tr>
     <tr>
       <td>avl tree</td>
-      <td>size, height, flatten, merge</td>
-      <td>10</td>
-      <td>12</td>
-      <td>16</td>
-      <td><strong>16</strong></td>
-      <td>0.14</td>
+      <td>9</td>
+      <td>9</td>
+      <td>-</td>
+      <td>9</td>
+      <td>0.21s</td>
+      <td>-</td>
+      <td>0.22s</td>
     </tr>
   </tbody>
   <tbody>
     <tr>
       <td><strong>Total</strong></td>
-      <td>26</td>
-      <td>70</td>
-      <td>85</td>
-      <td>113</td>
-      <td><strong>113</strong></td>
-      <td>0.08</td>
+      <td>93</td>
+      <td>93</td>
+      <td>-</td>
+      <td>93</td>
+      <td>0.23s</td>
+      <td>-</td>
+      <td>0.23s</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Experiment with invalid entailments</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data Structures</th>
+      <th>#Ent</th>
+      <th>Songbird</th>
+      <th>SDB</th>
+      <th>SDB+</th>
+      <th>Songbird</th>
+      <th>SDB</th>
+      <th>SDB+</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>singly linked-list</td>
+      <td>19</td>
+      <td>-</td>
+      <td>19</td>
+      <td>19</td>
+      <td>-</td>
+      <td>0.10s</td>
+      <td>1.35s</td>
+    </tr>
+    <tr>
+      <td>doubly linked-list</td>
+      <td>25</td>
+      <td>-</td>
+      <td>25</td>
+      <td>25</td>
+      <td>-</td>
+      <td>0.12s</td>
+      <td>0.71s</td>
+    </tr>
+    <tr>
+      <td>sorted linked-list</td>
+      <td>10</td>
+      <td>-</td>
+      <td>10</td>
+      <td>10</td>
+      <td>-</td>
+      <td>0.04s</td>
+      <td>0.82s</td>
+    </tr>
+    <tr>
+      <td>tree</td>
+      <td>14</td>
+      <td>-</td>
+      <td>14</td>
+      <td>14</td>
+      <td>-</td>
+      <td>0.55s</td>
+      <td>4.11s</td>
+    </tr>
+    <tr>
+      <td>binary search tree</td>
+      <td>28</td>
+      <td>-</td>
+      <td>28</td>
+      <td>28</td>
+      <td>-</td>
+      <td>0.33s</td>
+      <td>2.80s</td>
+    </tr>
+    <tr>
+      <td>avl tree</td>
+      <td>21</td>
+      <td>-</td>
+      <td>21</td>
+      <td>21</td>
+      <td>-</td>
+      <td>0.13s</td>
+      <td>1.73s</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td>118</td>
+      <td>-</td>
+      <td>118</td>
+      <td>118</td>
+      <td>-</td>
+      <td>0.16s</td>
+      <td>1.91s</td>
     </tr>
   </tbody>
 </table>
