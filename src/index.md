@@ -110,7 +110,7 @@ Experiment with invalid entailments
 
 - Our prover SDP and the experimented entaiment benchmarks can be
   downloaded here: [SDB and its
-  benchmarks](https://www.dropbox.com/s/bzsh70pm6n50oaf/prover-benchmarks.zip)
+  benchmarks]()
 
 - The details of our experiment are reported in this PDF file:
-  [experiment details](https://www.dropbox.com/s/i2n1jgswu6o9h3f/FM19-experiment.pdf)
+  [experiment details]()
