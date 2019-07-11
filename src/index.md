@@ -33,51 +33,78 @@ programmers to understand and to fix the bug more effectively.
 
 We first experimented **SDP** with the task of disproving invalid
 entailments collected from the separation logic competition
-SL-COMP 2019. **SDP** can disprove all of these entailments with the
-average proving time of 0.36s per entailment. It outperformed all
-state-of-the-art separation logic provers, which can prove at most 71.4%
-(137/192) of the benchmarks. The detailed results is presented below.
+SL-COMP 2019. **SDP** can disprove 94.8% (182/192) of these entailments
+with the average proving time of 1.38s per entailment. It outperformed
+all state-of-the-art separation logic provers, which can prove at most
+71.4% (137/192) of the benchmarks. The detailed results is presented
+below.
 
 |---------------------------------|-------|-------|---------|---------|---------|---------|
 | Category                        | #Ents | Slide | Asterix | ComSPEN | Cyclist | SDP     |
 |---------------------------------|-------|-------|---------|---------|---------|---------|
-| singly linked-list              |   134 | 0     | 126     |     126 |      24 | **134** |
+| singly linked-list              |   134 | 0     | 126     |     126 |      24 | **126** |
 | nested linked-list              |    16 | x     | x       |       x |       0 | **16**  |
-| skip list                       |    12 | x     | x       |       x |       0 | **12**  |
+| skip list                       |    12 | x     | x       |       x |       0 | **10**  |
 | doubly linked-list              |    18 | 0     | x       |       0 |      14 | **18**  |
 | tree                            |     1 | 0     | x       |       x |       1 | **1**   |
 |---------------------------------|-------|-------|---------|---------|---------|---------|
 | singly linked-list (arithmetic) |     3 | x     | x       |       3 |       x | **3**   |
 | doubly linked-list (arithmetic) |     8 | x     | x       |       8 |       x | **8**   |
 |---------------------------------|-------|-------|---------|---------|---------|---------|
-| **Total**                       |   192 | 0     | 126     |     137 |      39 | **192** |
+| **Total**                       |   192 | 0     | 126     |     137 |      39 | **182** |
 |---------------------------------|-------|-------|---------|---------|---------|---------|
 
 
-We also experimented **SDP** with invalid entailments collected from the
-verification of buggy programs written in a C-like language. In
-particular, we first collected entailments that an existing verifier
-Hip/Sleek could not prove (it returns the answer *unknown*). Then, we
-manually inspected to select only invalid entailments. These entailments
-contain not only arithmetic constraints but also complicated data
-structures. Hence, most of them cannot be disproved by existing
-separation logic provers. In contrast, our prover **SDP** efficiently
-disproved all of them in averagely 0.08 seconds per entailment. The
-details of this experiment as below.
+We also aim to evaluate the practical use of our disprover **SDP** on
+disproving entailments generated from program verification. We first
+equip **SDP** with the proving feature from the base tool **Songbird**
+to create the enhanced prover **SDP+**. To examine a given entailment,
+**SDP+** will first attempt to prove it. If **SDP+** fails after a
+timeout (here, we set to 10s), then it will change to disprove the
+entailment. Then, we integrate the new prover **SDP+** as the backend of
+the verification system **Hip** and evaluate it on proving and
+disproving entailments collected from the verification of buggy
+programs written in a C-like language. 
 
+In this experiment, the enhanced prover **SDP+** can prove 100% (93/93)
+of the valid entailments and 99.2\% (117/118) of the invalid
+entailments. This is because it inherits both the proving feature from
+**Songbird** and the disproving feature of **SDP**. Note that **SDP+**
+can efficiently prove all entailments in 0.23s per entailment. On the
+other hand, also the disproving runtime of **SDP+** is a bit slower than
+**SDP** (1.91s vs 0.16s per entailments), this overhead is still
+acceptable since the difference of 1.75s (1.91 - 0.16) is only 17.5\% of
+the timeout 10s which is set for the proving feature in **SDP+**.
 
-|--------------------|---------------------------------------|--------|-------|-------|---------------|----------|
-| Data Structures    | Algorithms                            | #Procs | #Bugs | #Ents | Proved by SDB | Time (s) |
-|--------------------|---------------------------------------|--------|-------|-------|---------------|----------|
-| singly linked-list | length, insert, append, reverse, copy |     13 |    17 |    17 | **17**        |     0.07 |
-| doubly linked-list | length, insert, append, reverse, copy |     15 |    19 |    23 | **23**        |     0.05 |
-| sorted linked-list | insertion, merge, quicksort, bubble   |     12 |    13 |    26 | **26**        |     0.03 |
-| tree               | size, height, flatten                 |      7 |     9 |    10 | **10**        |     0.22 |
-| binary search tree | size, height, flatten, insert, delete |     13 |    15 |    21 | **21**        |     0.05 |
-| avl tree           | size, height, flatten, merge          |     10 |    12 |    16 | **16**        |     0.14 |
-|--------------------|---------------------------------------|--------|-------|-------|---------------|----------|
-| **Total**          | 26                                    |     70 |    85 |   113 | **113**       |     0.08 |
-|--------------------|---------------------------------------|--------|-------|-------|---------------|----------|
+Experiment with valid entailments
+
+|--------------------|------|----------|-----|------|----------|-----|-------|
+| Data Structures    | #Ent | Songbird | SDB | SDB+ | Songbird | SDB | SDB+  |
+|--------------------|------|----------|-----|------|----------|-----|-------|
+| singly linked-list |   11 |       11 | -   |   11 | 0.16s    | -   | 0.17s |
+| doubly linked-list |   15 |       15 | -   |   15 | 0.17s    | -   | 0.18s |
+| sorted linked-list |   38 |       38 | -   |   38 | 0.13s    | -   | 0.13s |
+| tree               |    9 |        9 | -   |    9 | 0.88s    | -   | 0.88s |
+| binary search tree |   11 |       11 | -   |   11 | 0.18s    | -   | 0.18s |
+| avl tree           |    9 |        9 | -   |    9 | 0.21s    | -   | 0.22s |
+|--------------------|------|----------|-----|------|----------|-----|-------|
+| **Total**          |   93 |       93 | -   |   93 | 0.23s    | -   | 0.23s |
+|--------------------|------|----------|-----|------|----------|-----|-------|
+
+Experiment with invalid entailments
+
+|--------------------|------|----------|-----|------|----------|-------|-------|
+| Data Structures    | #Ent | Songbird | SDB | SDB+ | Songbird | SDB   | SDB+  |
+|--------------------|------|----------|-----|------|----------|-------|-------|
+| singly linked-list |   19 | -        |  19 |   19 | -        | 0.10s | 1.35s |
+| doubly linked-list |   25 | -        |  25 |   25 | -        | 0.12s | 0.71s |
+| sorted linked-list |   10 | -        |  10 |   10 | -        | 0.04s | 0.82s |
+| tree               |   14 | -        |  14 |   14 | -        | 0.55s | 4.11s |
+| binary search tree |   28 | -        |  28 |   28 | -        | 0.33s | 2.80s |
+| avl tree           |   21 | -        |  21 |   21 | -        | 0.13s | 1.73s |
+|--------------------|------|----------|-----|------|----------|-------|-------|
+| **Total**          |  118 | -        | 118 |  118 | -        | 0.16s | 1.91s |
+|--------------------|------|----------|-----|------|----------|-------|-------|
 
 # Download
 
