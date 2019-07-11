@@ -100,7 +100,7 @@ Experiment with invalid entailments
 | doubly linked-list |   25 | -        |  25 |   25 | -        | 0.12s | 0.71s |
 | sorted linked-list |   10 | -        |  10 |   10 | -        | 0.04s | 0.82s |
 | tree               |   14 | -        |  14 |   14 | -        | 0.55s | 4.11s |
-| binary search tree |   28 | -        |  28 |   28 | -        | 0.33s | 2.80s |
+| binary search tree |   29 | -        |  28 |   28 | -        | 0.33s | 2.80s |
 | avl tree           |   21 | -        |  21 |   21 | -        | 0.13s | 1.73s |
 |--------------------|------|----------|-----|------|----------|-------|-------|
 | **Total**          |  118 | -        | 118 |  118 | -        | 0.16s | 1.91s |
