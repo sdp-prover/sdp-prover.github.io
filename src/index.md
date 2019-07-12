@@ -109,8 +109,7 @@ Experiment with invalid entailments
 # Download
 
 - Our prover SDP and the experimented entaiment benchmarks can be
-  downloaded here: [SDB and its
-  benchmarks]()
+  downloaded here: [SDP-prover](https://www.dropbox.com/s/6r58xbmf5zbk2al/prover-benchmarks.zip)
 
 - The details of our experiment are reported in this PDF file:
-  [experiment details]()
+  [Experiment](https://www.dropbox.com/s/68cb73k80zm1df7/CSL20%20Experiment%20-%20Entailment%20Disproof.pdf)
